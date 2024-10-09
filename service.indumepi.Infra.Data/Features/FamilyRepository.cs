@@ -1,0 +1,83 @@
+﻿using Microsoft.Extensions.Logging;
+using service.indumepi.Application.Service;
+using service.indumepi.Application.Service.FamilyRequest;
+using service.indumepi.Domain.Aggregates;
+using service.indumepi.Domain.Aggregates.Family;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace service.indumepi.Infra.Data.Features
+{
+    public class FamilyRepository
+    {
+        private readonly Context _context;
+        private readonly ILogger<FamilyRepository> _logger;
+
+        public FamilyRepository(Context context, ILogger<FamilyRepository> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
+
+        public void DeleteAll()
+        {
+            _context.Families.RemoveRange(_context.Families.ToList());
+            _context.SaveChanges();
+        }
+
+        public void SaveFamilies(List<Family> families)
+        {
+            foreach (var family in families)
+            {
+                var existingFamily = _context.Families
+                    .FirstOrDefault(p => p.CodFamilia == family.CodFamilia || p.Codigo == family.Codigo);
+
+                if (existingFamily != null)
+                {
+                    existingFamily.NomeFamilia = family.NomeFamilia;
+                    existingFamily.Inativo = family.Inativo;
+                }
+                else
+                {
+                    _context.Families.Add(family);
+                }
+            }
+            _context.SaveChanges();
+        }
+
+        public async Task AtualizarFamiliasAsync(FamilyService familyService)
+        {
+            try
+            {
+                DeleteAll();  
+
+                var familias = await familyService.ListarFamiliaAsync();
+                _logger.LogInformation($"Famílias recebidas: {familias.Count}");
+
+                if (familias.Any())
+                {
+                    SaveFamilies(familias);
+                    _logger.LogInformation("Famílias inseridas no banco de dados com sucesso.");
+
+                    var totalDePaginas = familias.Count / 50 + 1;
+
+                    for (int pagina = 2; pagina <= totalDePaginas; pagina++)
+                    {
+                        var paginaFamilias = await familyService.ListarFamiliaAsync();
+                        SaveFamilies(paginaFamilias);
+                        _logger.LogInformation($"Inserção de famílias concluída - Página {pagina}");
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning("Nenhuma família encontrada.");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erro ao atualizar famílias: {ex.Message}");
+            }
+        }
+    }
+}
