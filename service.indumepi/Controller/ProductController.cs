@@ -21,7 +21,7 @@ namespace service.indumepi.API.Controller
         [HttpGet("listar")]
         public async Task<IActionResult> ListarProdutos()
         {
-            var produtos = await _itemService.ListarProdutosAsync();
+            var produtos = await _itemService.ListarTodosOsProdutosAsync();
             if (produtos.Any())
             {
                 _productRepository.DeleteAll();

@@ -38,6 +38,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "service.indumepi.API.Controllers.OrdersController",
+    "Method": "SynchronizeOrders",
+    "RelativePath": "api/Orders/orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "service.indumepi.API.Controller.ProductController",
     "Method": "ListarProdutos",
     "RelativePath": "api/Product/listar",

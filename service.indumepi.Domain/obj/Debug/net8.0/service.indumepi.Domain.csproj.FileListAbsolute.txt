@@ -12,3 +12,4 @@ C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Debug\net8.0
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Debug\net8.0\service.indumepi.Domain.pdb
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Debug\net8.0\service.indumepi.Domain.genruntimeconfig.cache
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Debug\net8.0\ref\service.indumepi.Domain.dll
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Debug\net8.0\service.indumepi.Domain.sourcelink.json

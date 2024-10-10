@@ -17,3 +17,4 @@ C:\Users\anton\Projeto\service.indumepi\service.indumepi.Infra.Data\obj\Debug\ne
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Infra.Data\obj\Debug\net8.0\service.indumepi.Infra.Data.pdb
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Infra.Data\obj\Debug\net8.0\service.indumepi.Infra.Data.genruntimeconfig.cache
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Infra.Data\obj\Debug\net8.0\ref\service.indumepi.Infra.Data.dll
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Infra.Data\obj\Debug\net8.0\service.indumepi.Infra.Data.sourcelink.json

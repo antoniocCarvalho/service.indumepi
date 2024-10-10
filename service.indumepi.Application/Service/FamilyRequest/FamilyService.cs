@@ -1,32 +1,74 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using service.indumepi.Application.Service.ItemRequest;
-using service.indumepi.Domain.Aggregates.Family;
-using service.indumepi.Domain.Aggregates.Item;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using service.indumepi.Domain.Aggregates.Family;
 
 namespace service.indumepi.Application.Service.FamilyRequest
 {
     public class FamilyService
     {
         private readonly HttpClient _httpClient;
-        private readonly ILogger<ItemService> _logger;
+        private readonly ILogger<FamilyService> _logger;
 
-        public FamilyService(HttpClient httpClient, ILogger<ItemService> logger)
+        public FamilyService(HttpClient httpClient, ILogger<FamilyService> logger)
         {
             _httpClient = httpClient;
             _logger = logger;
+
+            // Configurar HttpClient para aceitar respostas compactadas
+            _httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+            _httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
         }
 
-        public async Task<List<Family>> ListarFamiliaAsync()
+        public async Task<List<Family>> ListarTodasAsFamiliasAsync()
         {
             var url = "https://app.omie.com.br/api/v1/geral/familias/";
+            var todasAsFamilias = new List<Family>();
+            int registrosPorPagina = 200; // Aumentar o número de registros por página
+            int paginasPorBatch = 5; // Requisições simultâneas por lote
+            int pagina = 1;
+            bool continuarBuscando = true;
 
+            while (continuarBuscando)
+            {
+                var tasks = new List<Task<List<Family>>>();
+
+                // Adicionar múltiplas tarefas para buscar páginas em paralelo
+                for (int i = 0; i < paginasPorBatch; i++)
+                {
+                    tasks.Add(ObterFamiliasPorPaginaAsync(url, pagina + i, registrosPorPagina));
+                }
+
+                // Executar as tarefas em paralelo e obter os resultados
+                var resultados = await Task.WhenAll(tasks);
+
+                foreach (var familiasPagina in resultados)
+                {
+                    if (familiasPagina.Count > 0)
+                    {
+                        todasAsFamilias.AddRange(familiasPagina);
+                    }
+                    else
+                    {
+                        continuarBuscando = false;
+                        break;
+                    }
+                }
+
+                // Avançar para o próximo lote de páginas
+                pagina += paginasPorBatch;
+            }
+
+            return todasAsFamilias;
+        }
+
+        private async Task<List<Family>> ObterFamiliasPorPaginaAsync(string url, int pagina, int registrosPorPagina)
+        {
             var data = new
             {
                 call = "PesquisarFamilias",
@@ -36,12 +78,11 @@ namespace service.indumepi.Application.Service.FamilyRequest
                 {
                     new
                     {
-                        pagina = 1,
-                        registros_por_pagina = 50,
+                        pagina,
+                        registros_por_pagina = registrosPorPagina
                     }
                 }
             };
-
 
             var jsonPayload = JsonConvert.SerializeObject(data, new JsonSerializerSettings
             {
@@ -49,52 +90,37 @@ namespace service.indumepi.Application.Service.FamilyRequest
                 Formatting = Formatting.None
             });
 
-
             var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            try
+            _httpClient.DefaultRequestHeaders.Clear();
+            var response = await _httpClient.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
             {
-                _httpClient.DefaultRequestHeaders.Clear();
-                var response = await _httpClient.PostAsync(url, content);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                List<Family> familiasPagina = new List<Family>();
 
-                if (response.IsSuccessStatusCode)
+                foreach (var family in responseData.famCadastro)
                 {
-                    var jsonResponse = await response.Content.ReadAsStringAsync();
-                    _logger.LogInformation("Resposta recebida com sucesso da API Omie.");
-
-                    var responseData = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-                    List<Family> familys = new List<Family>();
-
-
-
-                    foreach (var family in responseData.famCadastro)
+                    familiasPagina.Add(new Family
                     {
-                        familys.Add(new Family
-                        {
-                            CodFamilia = family.codFamilia,
-                            CodInt = family.codInt,
-                            Codigo = Convert.ToInt64(family.codigo),
-                            Inativo = family.inativo,
-                            NomeFamilia = family.nomeFamilia,
-                        });
-                    }
+                        CodFamilia = family.codFamilia,
+                        CodInt = family.codInt,
+                        Codigo = Convert.ToInt64(family.codigo),
+                        Inativo = family.inativo,
+                        NomeFamilia = family.nomeFamilia
+                    });
+                }
 
-                    return familys;
-                }
-                else
-                {
-                    var errorResponse = await response.Content.ReadAsStringAsync();
-                    _logger.LogError($"Falha na requisição. Código de status: {response.StatusCode}. Detalhes: {errorResponse}");
-                    return new List<Family>();
-                }
+                return familiasPagina;
             }
-            catch (HttpRequestException ex)
+            else
             {
-                _logger.LogError($"Erro na requisição HTTP: {ex.Message}");
+                _logger.LogError($"Falha na requisição. Código de status: {response.StatusCode}. Página: {pagina}");
                 return new List<Family>();
             }
         }
     }
 }
-
