@@ -46,38 +46,5 @@ namespace service.indumepi.Infra.Data.Features
             _context.SaveChanges();
         }
 
-        public async Task AtualizarFamiliasAsync(FamilyService familyService)
-        {
-            try
-            {
-                DeleteAll();  
-
-                var familias = await familyService.ListarFamiliaAsync();
-                _logger.LogInformation($"Famílias recebidas: {familias.Count}");
-
-                if (familias.Any())
-                {
-                    SaveFamilies(familias);
-                    _logger.LogInformation("Famílias inseridas no banco de dados com sucesso.");
-
-                    var totalDePaginas = familias.Count / 50 + 1;
-
-                    for (int pagina = 2; pagina <= totalDePaginas; pagina++)
-                    {
-                        var paginaFamilias = await familyService.ListarFamiliaAsync();
-                        SaveFamilies(paginaFamilias);
-                        _logger.LogInformation($"Inserção de famílias concluída - Página {pagina}");
-                    }
-                }
-                else
-                {
-                    _logger.LogWarning("Nenhuma família encontrada.");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Erro ao atualizar famílias: {ex.Message}");
-            }
-        }
     }
 }

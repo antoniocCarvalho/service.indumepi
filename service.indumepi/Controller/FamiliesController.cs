@@ -22,16 +22,16 @@ namespace service.indumepi.API.Controller
         [HttpGet("families")]
         public async Task<IActionResult> ListarFamilies()
         {
-            var familias = await _familyService.ListarFamiliaAsync();
+            var familias = await _familyService.ListarTodasAsFamiliasAsync();
             if (familias.Any())
             {
                 _familyRepository.DeleteAll();
                 _familyRepository.SaveFamilies(familias);
-                return Ok(new { message = "Produtos listados e salvos com sucesso!", produtosSalvos = familias.Count });
+                return Ok(new { message = "Families listados e salvos com sucesso!", familias = familias.Count });
             }
             else
             {
-                return NotFound("Nenhum produto encontrado na API Omie.");
+                return NotFound("Nenhuma Familie encontrado na API Omie.");
             }
         }
     }

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using service.indumepi.Application.Service.ClientRequest;
 using service.indumepi.Application.Service.FamilyRequest;
 using service.indumepi.Application.Service.ItemRequest;
+using service.indumepi.Application.Service.OrderRequest;
 using service.indumepi.Infra.Data;
 using service.indumepi.Infra.Data.Features;
 
@@ -20,6 +21,9 @@ builder.Services.AddScoped<ProductRepository>();
 
 builder.Services.AddHttpClient<FamilyService>();
 builder.Services.AddScoped<FamilyRepository>();
+
+builder.Services.AddHttpClient<OrderService>();
+builder.Services.AddScoped<OrderRepository>();
 
 
 

@@ -15,3 +15,4 @@ C:\Users\anton\Projeto\service.indumepi\service.indumepi.Application\bin\Debug\n
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Application\bin\Debug\net8.0\service.indumepi.Domain.pdb
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Application\obj\Debug\net8.0\service..9C7FD192.Up2Date
 C:\Users\anton\Projeto\service.indumepi\service.indumepi.Application\obj\Debug\net8.0\service.indumepi.Application.genruntimeconfig.cache
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Application\obj\Debug\net8.0\service.indumepi.Application.sourcelink.json
