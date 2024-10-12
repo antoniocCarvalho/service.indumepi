@@ -33,6 +33,22 @@ namespace service.indumepi.API.Controller
                 return NotFound("Nenhum Cliente encontrado na API Omie.");
             }
         }
+
+
+
+        [HttpGet("Clientesfantasia")]
+        public async Task<IActionResult> GetClientes()
+        {
+            var clientes = _clientRepository.GetCustomers();
+            if (clientes.Any())
+            {
+                return Ok(clientes);
+            }
+            else
+            {
+                return NotFound("Nenhum Cliente encontrado no banco de dados.");
+            }
+        }
     }
 }
 

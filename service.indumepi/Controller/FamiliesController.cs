@@ -27,7 +27,7 @@ namespace service.indumepi.API.Controller
             {
                 _familyRepository.DeleteAll();
                 _familyRepository.SaveFamilies(familias);
-                return Ok(new { message = "Families listados e salvos com sucesso!", familias = familias.Count });
+                return Ok(familias);
             }
             else
             {

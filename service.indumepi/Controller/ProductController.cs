@@ -26,12 +26,28 @@ namespace service.indumepi.API.Controller
             {
                 _productRepository.DeleteAll();
                 _productRepository.SaveProducts(produtos);
-                return Ok(new { message = "Produtos listados e salvos com sucesso!", produtosSalvos = produtos.Count });
+                return Ok(produtos);
             }
             else
             {
                 return NotFound("Nenhum produto encontrado na API Omie.");
             }
         }
+
+
+        [HttpGet("listar/front")]
+        public async Task<IActionResult> ListarProdutosFront()
+        {
+            var produtos =  _productRepository.ListAll(); ;
+            if (produtos.Any())
+            {
+                return Ok(produtos);
+            }
+            else
+            {
+                return NotFound("Nenhum produto encontrado na API Omie.");
+            }
+        }
+      
     }
 }

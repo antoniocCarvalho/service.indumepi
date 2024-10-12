@@ -48,5 +48,16 @@ namespace service.indumepi.Infra.Data.Features
             _context.SaveChanges();
         }
 
+
+
+        public List<Client> GetCustomers() {
+            return _context.Client
+                .Select(client => new Client
+                {
+                    CodigoCliente = client.CodigoCliente,
+                    RazaoSocial = client.RazaoSocial
+                })
+                .ToList();
+        }
     }
 }

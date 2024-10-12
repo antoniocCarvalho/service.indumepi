@@ -11,11 +11,13 @@ namespace service.indumepi.API.Controllers
     {
         private readonly OrderService _orderService;
         private readonly OrderRepository _orderRepository;
+        private readonly ProductRepository _itemRepository;
 
-        public OrdersController(OrderService orderService, OrderRepository orderRepository)
+        public OrdersController(OrderService orderService, OrderRepository orderRepository, ProductRepository itemRepository)
         {
             _orderService = orderService;
             _orderRepository = orderRepository;
+            _itemRepository = itemRepository;
         }
 
         [HttpGet("orders")]
@@ -32,6 +34,49 @@ namespace service.indumepi.API.Controllers
             {
                 return NotFound("Nenhum pedido encontrado na API Omie.");
             }
+
         }
+
+        [HttpGet("pedidos")]
+        public async Task<IActionResult> GetPedidos()
+        {
+            var orders = _orderRepository.GetOrders();
+
+            if (orders.Count > 0)
+            {
+                return Ok(orders);
+            }
+            else
+            {
+                return NotFound("Nenhum pedido encontrado no banco de dados.");
+            }
+        }
+
+        [HttpGet("pedidos/{numeropedido}")]
+        public async Task<IActionResult> GetPedido(string numeropedido)
+        {
+            var orders = _orderRepository.GetOrderItems()
+                                         .Where(o => o.NumeroPedido == numeropedido)
+                                         .ToList();
+
+            if (orders.Count > 0)
+            {
+                foreach (var order in orders)
+                {
+                    var item = _itemRepository.GetItemByCodigoProduto(order.CodigoProduto);
+                    if (item != null)
+                    {
+                        order.NomeProduto = item.Descricao;
+                    }
+                }
+
+                return Ok(orders);
+            }
+            else
+            {
+                return NotFound("Nenhum pedido encontrado no banco de dados.");
+            }
+        }
+
     }
 }

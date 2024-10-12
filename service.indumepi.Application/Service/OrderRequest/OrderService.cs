@@ -61,10 +61,10 @@ namespace service.indumepi.Application.Service.OrderRequest
                         var produto = detalhe.produto;
                         pedItems.Add(new OrderProduct
                         {
-                            NumeroPedido = produto.numero_pedido,
+                            NumeroPedido = cabecalho.numero_pedido,
                             CodigoCliente = Convert.ToInt64(produto.codigo_cliente),
                             CodigoEmpresa = Convert.ToInt64(produto.codigo_empresa),
-                            Etapa = produto.etapa,
+                            Etapa = cabecalho.etapa,
                             Cfop = produto.cfop,
                             CnpjFabricante = produto.cnpj_fabricante,
                             CodigoProduto = Convert.ToInt64(produto.codigo_produto),

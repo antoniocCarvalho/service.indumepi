@@ -43,5 +43,21 @@ namespace service.indumepi.Infra.Data.Features
             }
             _context.SaveChanges();
         }
+
+
+        public List<Item> ListAll()
+        {
+            return _context.Item.ToList();
+        }
+
+
+
+        public Item GetItemByCodigoProduto(long codigoProduto)
+        {
+            return _context.Item
+                .FirstOrDefault(p => p.CodigoProduto == codigoProduto);
+        }
+
+       
     }
 }

@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_1",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_2",
     "RelativePath": "",
     "HttpMethod": "GET",
     "IsController": false,
@@ -21,6 +21,16 @@
     "ContainingType": "service.indumepi.API.Controller.ClientController",
     "Method": "ListarProdutos",
     "RelativePath": "api/Client/Cliente",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "service.indumepi.API.Controller.ClientController",
+    "Method": "GetClientes",
+    "RelativePath": "api/Client/Clientesfantasia",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -48,9 +58,45 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "service.indumepi.API.Controllers.OrdersController",
+    "Method": "GetPedidos",
+    "RelativePath": "api/Orders/pedidos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "service.indumepi.API.Controllers.OrdersController",
+    "Method": "GetPedido",
+    "RelativePath": "api/Orders/pedidos/{numeropedido}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "numeropedido",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "service.indumepi.API.Controller.ProductController",
     "Method": "ListarProdutos",
     "RelativePath": "api/Product/listar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "service.indumepi.API.Controller.ProductController",
+    "Method": "ListarProdutosFront",
+    "RelativePath": "api/Product/listar/front",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

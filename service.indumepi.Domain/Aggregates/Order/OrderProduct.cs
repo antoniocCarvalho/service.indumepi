@@ -36,6 +36,10 @@ namespace service.indumepi.Domain.Aggregates.Order
         public long Conferencia { get; set; }
         public string UserName { get; set; }
 
+        public string NomeProduto { get; set; }
+
+
+
         public OrderProduct()
         {
         }
