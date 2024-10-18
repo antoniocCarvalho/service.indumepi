@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using service.indumepi.Application.Service.ClientRequest;
 using service.indumepi.Application.Service.FamilyRequest;
 using service.indumepi.Application.Service.ItemRequest;
+using service.indumepi.Application.Service.OrderRequest;
 using service.indumepi.Infra.Data;
 using service.indumepi.Infra.Data.Features;
 
@@ -21,11 +22,22 @@ builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddHttpClient<FamilyService>();
 builder.Services.AddScoped<FamilyRepository>();
 
+builder.Services.AddHttpClient<OrderService>();
+builder.Services.AddScoped<OrderRepository>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost",
+        builder => builder.WithOrigins("http://127.0.0.1:5500")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
 
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
+
 
 var app = builder.Build();
 
@@ -43,6 +55,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCors("AllowLocalhost");
+
 
 app.UseRouting();
 

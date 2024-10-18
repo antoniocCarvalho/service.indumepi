@@ -1,9 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using service.indumepi.Domain.Aggregates.Item;
-using System.Net.Http.Headers;
-using System.Numerics;
-using System.Text;
 
 namespace service.indumepi.Application.Service.ItemRequest
 {
@@ -18,10 +21,48 @@ namespace service.indumepi.Application.Service.ItemRequest
             _logger = logger;
         }
 
-        public async Task<List<Item>> ListarProdutosAsync(int pagina = 1)
+        public async Task<List<Item>> ListarTodosOsProdutosAsync()
         {
             var url = "https://app.omie.com.br/api/v1/geral/produtos/";
+            var todosOsProdutos = new List<Item>();
+            int registrosPorPagina = 200; 
+            int paginasPorBatch = 5; 
+            int pagina = 1;
+            bool continuarBuscando = true;
 
+            while (continuarBuscando)
+            {
+                var tasks = new List<Task<List<Item>>>();
+
+                for (int i = 0; i < paginasPorBatch; i++)
+                {
+                    tasks.Add(ObterProdutosPorPaginaAsync(url, pagina + i, registrosPorPagina));
+                }
+
+                var resultados = await Task.WhenAll(tasks);
+
+                foreach (var produtosPagina in resultados)
+                {
+                    if (produtosPagina.Count > 0)
+                    {
+                        todosOsProdutos.AddRange(produtosPagina);
+                    }
+                    else
+                    {
+                        continuarBuscando = false;
+                        break;
+                    }
+                }
+
+                pagina += paginasPorBatch;
+
+            }
+
+            return todosOsProdutos;
+        }
+
+        private async Task<List<Item>> ObterProdutosPorPaginaAsync(string url, int pagina, int registrosPorPagina)
+        {
             var data = new
             {
                 call = "ListarProdutos",
@@ -31,8 +72,8 @@ namespace service.indumepi.Application.Service.ItemRequest
                 {
                     new
                     {
-                        pagina = 1,
-                        registros_por_pagina = 50,
+                        pagina,
+                        registros_por_pagina = registrosPorPagina,
                         apenas_importado_api = "N",
                         filtrar_apenas_omiepdv = "N"
                     }
@@ -48,48 +89,35 @@ namespace service.indumepi.Application.Service.ItemRequest
             var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            try
+            _httpClient.DefaultRequestHeaders.Clear();
+            var response = await _httpClient.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
             {
-                _httpClient.DefaultRequestHeaders.Clear();
-                var response = await _httpClient.PostAsync(url, content);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                List<Item> produtosPagina = new List<Item>();
 
-                if (response.IsSuccessStatusCode)
+                foreach (var produto in responseData.produto_servico_cadastro)
                 {
-                    var jsonResponse = await response.Content.ReadAsStringAsync();
-                    _logger.LogInformation("Resposta recebida com sucesso da API Omie.");
-
-                    var responseData = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-                    List<Item> produtos = new List<Item>();
-
-
-
-                    foreach (var produto in responseData.produto_servico_cadastro)
+                    produtosPagina.Add(new Item
                     {
-                        produtos.Add(new Item
-                        {
-                            Codigo = produto.codigo,
-                            CodigoProduto = Convert.ToInt64(produto.codigo_produto),
-                            Descricao = produto.descricao,
-                            ValorUnitario = (decimal)produto.valor_unitario,
-                            CodigoFamilia = Convert.ToInt64(produto.codigo_familia)
-                        });
-
-                    }
-
-                    return produtos;
+                        Codigo = produto.codigo,
+                        CodigoProduto = Convert.ToInt64(produto.codigo_produto),
+                        Descricao = produto.descricao,
+                        ValorUnitario = (decimal)produto.valor_unitario,
+                        CodigoFamilia = Convert.ToInt64(produto.codigo_familia)
+                    });
                 }
-                else
-                {
-                    var errorResponse = await response.Content.ReadAsStringAsync();
-                    _logger.LogError($"Falha na requisição. Código de status: {response.StatusCode}. Detalhes: {errorResponse}");
-                    return new List<Item>();
-                }
+
+                return produtosPagina;
             }
-            catch (HttpRequestException ex)
+            else
             {
-                _logger.LogError($"Erro na requisição HTTP: {ex.Message}");
+                _logger.LogError($"Falha na requisição. Código de status: {response.StatusCode}. Página: {pagina}");
                 return new List<Item>();
             }
         }
     }
 }
+

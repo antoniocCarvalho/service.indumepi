@@ -105,6 +105,163 @@ namespace service.indumepi.Infra.Data.Migrations
 
                     b.ToTable("Item");
                 });
+
+            modelBuilder.Entity("service.indumepi.Domain.Aggregates.Order.OrderList", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Cancelada")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CodigoCliente")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CodigoEmpresa")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CodigoPedido")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DtPrevisao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Encerrado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Etapa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeroPedido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderList");
+                });
+
+            modelBuilder.Entity("service.indumepi.Domain.Aggregates.Order.OrderProduct", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Cfop")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CnpjFabricante")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CodigoCliente")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CodigoEmpresa")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CodigoProduto")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CodigoTabelaPreco")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Conferencia")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Conferido")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Ean")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("Enviado")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Etapa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndicadorEscala")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MotivoIcmsDesonerado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ncm")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeroPedido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PercentualDesconto")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PrimeiraSeparacao")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Quantidade")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Reservado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SegundaSeparacao")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TipoDesconto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Unidade")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ValorDeducao")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ValorDesconto")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ValorIcmsDesonerado")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ValorMercadoria")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ValorTotal")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("ValorUnitario")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderProduct");
+                });
 #pragma warning restore 612, 618
         }
     }

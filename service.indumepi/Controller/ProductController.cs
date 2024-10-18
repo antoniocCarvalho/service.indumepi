@@ -21,17 +21,33 @@ namespace service.indumepi.API.Controller
         [HttpGet("listar")]
         public async Task<IActionResult> ListarProdutos()
         {
-            var produtos = await _itemService.ListarProdutosAsync();
+            var produtos = await _itemService.ListarTodosOsProdutosAsync();
             if (produtos.Any())
             {
                 _productRepository.DeleteAll();
                 _productRepository.SaveProducts(produtos);
-                return Ok(new { message = "Produtos listados e salvos com sucesso!", produtosSalvos = produtos.Count });
+                return Ok(produtos);
             }
             else
             {
                 return NotFound("Nenhum produto encontrado na API Omie.");
             }
         }
+
+
+        [HttpGet("listar/front")]
+        public async Task<IActionResult> ListarProdutosFront()
+        {
+            var produtos =  _productRepository.ListAll(); ;
+            if (produtos.Any())
+            {
+                return Ok(produtos);
+            }
+            else
+            {
+                return NotFound("Nenhum produto encontrado na API Omie.");
+            }
+        }
+      
     }
 }

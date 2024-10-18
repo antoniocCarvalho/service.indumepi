@@ -37,53 +37,27 @@ namespace service.indumepi.Infra.Data.Features
 
                 if (existingCustomer != null)
                 {
-                    // Atualiza apenas os campos que podem mudar
                     existingCustomer.NomeFantasia = customer.NomeFantasia;
                     existingCustomer.RazaoSocial = customer.RazaoSocial;
                 }
                 else
                 {
-                    // Adiciona um novo cliente no banco de dados
                     _context.Client.Add(customer);
                 }
             }
             _context.SaveChanges();
         }
 
-        public async Task AtualizarClientesAsync(ClientService clientService)
-        {
-            try
-            {
-                DeleteAll();  // Remove todos os registros anteriores
 
-                var clientes = await clientService.ListarClientesAsync();
-                _logger.LogInformation($"Clientes recebidos: {clientes.Count}");
 
-                if (clientes.Any())
+        public List<Client> GetCustomers() {
+            return _context.Client
+                .Select(client => new Client
                 {
-                    SaveCustomers(clientes);
-                    _logger.LogInformation("Clientes inseridos no banco de dados com sucesso.");
-
-                    // Supondo que a resposta contenha informação de total de páginas
-                    var totalDePaginas = clientes.Count / 50 + 1;
-
-                    // Itera pelas páginas restantes e atualiza o banco de dados
-                    for (int pagina = 2; pagina <= totalDePaginas; pagina++)
-                    {
-                        var paginaClientes = await clientService.ListarClientesAsync(pagina);
-                        SaveCustomers(paginaClientes);
-                        _logger.LogInformation($"Inserção de clientes concluída - Página {pagina}");
-                    }
-                }
-                else
-                {
-                    _logger.LogWarning("Nenhum cliente encontrado.");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Erro ao atualizar clientes: {ex.Message}");
-            }
+                    CodigoCliente = client.CodigoCliente,
+                    RazaoSocial = client.RazaoSocial
+                })
+                .ToList();
         }
     }
 }

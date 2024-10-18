@@ -15,4 +15,8 @@
     <ProjectReference Include="..\service.indumepi.Infra.Data\service.indumepi.Infra.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>
