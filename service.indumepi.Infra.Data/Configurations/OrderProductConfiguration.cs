@@ -67,7 +67,9 @@ namespace service.indumepi.Infra.Data.Configurations
 
             builder.Property(x => x.ValorTotal);
 
-            builder.Property(x => x.ValorUnitario);
+            builder.Property(x => x.ValorUnitario)
+             .HasColumnType("decimal(18,2)");
+
 
             builder.Property(x => x.PrimeiraSeparacao);
 
@@ -80,6 +82,10 @@ namespace service.indumepi.Infra.Data.Configurations
             builder.Property(x => x.Conferencia);
 
             builder.Property(x => x.UserName);
+
+            builder.Property(x => x.Editado)
+                  .IsRequired()
+                  .HasDefaultValue(false);
         }
     }
 }

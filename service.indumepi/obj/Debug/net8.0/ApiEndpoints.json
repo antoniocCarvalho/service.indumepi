@@ -84,6 +84,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "service.indumepi.API.Controllers.OrdersController",
+    "Method": "UpdatePedido",
+    "RelativePath": "api/Orders/pedidos/{numeropedido}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "numeropedido",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "separacaoDto",
+        "Type": "service.indumepi.Domain.Aggregates.Order.SeparacaoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "service.indumepi.API.Controller.ProductController",
     "Method": "ListarProdutos",
     "RelativePath": "api/Product/listar",

@@ -6,20 +6,67 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace service.indumepi.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddOrders : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CnpjCpf = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CodigoCliente = table.Column<long>(type: "bigint", nullable: false),
+                    NomeFantasia = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RazaoSocial = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Families",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CodFamilia = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CodInt = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Codigo = table.Column<long>(type: "bigint", nullable: false),
+                    Inativo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NomeFamilia = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Families", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Item",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CodigoProduto = table.Column<long>(type: "bigint", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ValorUnitario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CodigoFamilia = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Item", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderList",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NumeroPedido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumeroPedido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CodigoCliente = table.Column<long>(type: "bigint", nullable: true),
                     CodigoEmpresa = table.Column<long>(type: "bigint", nullable: true),
-                    Etapa = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Etapa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CodigoPedido = table.Column<long>(type: "bigint", nullable: true),
                     Cancelada = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Encerrado = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -35,7 +82,7 @@ namespace service.indumepi.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NumeroPedido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumeroPedido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CodigoCliente = table.Column<long>(type: "bigint", nullable: true),
                     CodigoEmpresa = table.Column<long>(type: "bigint", nullable: true),
                     Etapa = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -64,7 +111,8 @@ namespace service.indumepi.Infra.Data.Migrations
                     Conferido = table.Column<long>(type: "bigint", nullable: true),
                     Enviado = table.Column<long>(type: "bigint", nullable: true),
                     Conferencia = table.Column<long>(type: "bigint", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Editado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,6 +123,15 @@ namespace service.indumepi.Infra.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Client");
+
+            migrationBuilder.DropTable(
+                name: "Families");
+
+            migrationBuilder.DropTable(
+                name: "Item");
+
             migrationBuilder.DropTable(
                 name: "OrderList");
 

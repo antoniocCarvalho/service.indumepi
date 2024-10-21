@@ -15,7 +15,7 @@ namespace service.indumepi.Domain.Aggregates.Order
         public string Etapa { get; set; }
         public long? CodigoPedido { get; set; } 
         public string Cancelada { get; set; }
-        public string Encerrado { get; set; }
+        public string? Encerrado { get; set; }
         public DateTime? DtPrevisao { get; set; }
 
         public OrderList()
