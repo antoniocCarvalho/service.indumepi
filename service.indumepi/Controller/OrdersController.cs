@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using service.indumepi.Application.Service.OrderRequest;
+using service.indumepi.Domain.Aggregates.Order;
 using service.indumepi.Infra.Data.Features;
 using System.Threading.Tasks;
 
@@ -27,8 +28,9 @@ namespace service.indumepi.API.Controllers
 
             if (orders.Count > 0)
             {
+                _orderRepository.DeleteAll();
                 _orderRepository.SaveOrders(orders, items);
-                return Ok(new { message = "Pedidos listados e salvos com sucesso!", totalOrders = orders.Count, totalItems = items.Count });
+                return Ok();
             }
             else
             {
@@ -76,6 +78,44 @@ namespace service.indumepi.API.Controllers
             {
                 return NotFound("Nenhum pedido encontrado no banco de dados.");
             }
+        }
+
+        [HttpPut("pedidos/{numeropedido}")]
+        public async Task<IActionResult> UpdatePedido(string numeropedido, [FromBody] SeparacaoDto separacaoDto)
+        {
+            // Busca o pedido existente com base no número do pedido
+            var existingOrders = _orderRepository.GetOrderItems()
+                                                 .Where(o => o.NumeroPedido == numeropedido)
+                                                 .ToList();
+
+            if (existingOrders.Count == 0)
+            {
+                return NotFound("Nenhum pedido encontrado com esse número.");
+            }
+
+            // Itera sobre os produtos do pedido e verifica se há mudanças
+            foreach (var existingOrder in existingOrders)
+            {
+                if (existingOrder.Id == separacaoDto.Id)
+                {
+                    // Verifica se houve mudança nos campos PrimeiraSeparacao ou SegundaSeparacao
+                    bool hasChanged = existingOrder.PrimeiraSeparacao != separacaoDto.PrimeiraSeparacao ||
+                                      existingOrder.SegundaSeparacao != separacaoDto.SegundaSeparacao;
+
+                    if (hasChanged)
+                    {
+                        // Mantém os valores atuais e atualiza apenas os campos de interesse
+                        existingOrder.PrimeiraSeparacao = separacaoDto.PrimeiraSeparacao;
+                        existingOrder.SegundaSeparacao = separacaoDto.SegundaSeparacao;
+                        existingOrder.Editado = true; // Marca como editado
+
+                        // Atualiza o pedido no banco de dados
+                        _orderRepository.UpdateOrderProduct(existingOrder);
+                    }
+                }
+            }
+
+            return Ok("Pedido atualizado com sucesso.");
         }
 
     }

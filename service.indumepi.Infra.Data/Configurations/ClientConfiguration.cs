@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using service.indumepi.Domain.Aggregates.Client;
 
-
 namespace service.indumepi.Infra.Data.Configurations
 {
     public class ClientConfiguration : IEntityTypeConfiguration<Client>
@@ -13,14 +12,20 @@ namespace service.indumepi.Infra.Data.Configurations
             builder.HasKey(u => u.Id);
 
             builder.Property(x => x.Id)
-                  .ValueGeneratedOnAdd()
-                  .IsRequired();
+                   .ValueGeneratedOnAdd()
+                   .IsRequired(); 
 
-            builder.Property(u => u.CnpjCpf).IsRequired();
-            builder.Property(u => u.CodigoCliente).IsRequired();
-            builder.Property(u => u.NomeFantasia).IsRequired();
-            builder.Property(u => u.RazaoSocial).IsRequired();
+            builder.Property(u => u.CnpjCpf)
+                   .IsRequired();
+
+            builder.Property(u => u.CodigoCliente)
+                   .IsRequired();
+
+            builder.Property(u => u.NomeFantasia)
+                   .IsRequired();
+
+            builder.Property(u => u.RazaoSocial)
+                   .IsRequired();
         }
     }
 }
-
