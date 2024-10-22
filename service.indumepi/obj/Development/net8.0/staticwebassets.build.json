@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "8kM/V39oYUWgkkv70gl+7DRiqxiB2Xfbrl0CwFvPxdQ=",
+  "Source": "service.indumepi.API",
+  "BasePath": "_content/service.indumepi.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "service.indumepi.API\\wwwroot",
+      "Source": "service.indumepi.API",
+      "ContentRoot": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi\\wwwroot\\",
+      "BasePath": "_content/service.indumepi.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

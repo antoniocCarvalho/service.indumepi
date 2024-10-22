@@ -216,5 +216,14 @@ namespace service.indumepi.Infra.Data.Features
         }
 
 
+        public List<OrderProduct> GetByProductCode(long codigoProduto)
+        {
+            return _context.OrderProduct
+                           .Where(op => op.CodigoProduto == codigoProduto)
+                           .ToList(); // Use a versão síncrona
+        }
+
+
+
     }
 }
