@@ -105,6 +105,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "service.indumepi.API.Controllers.OrdersController",
+    "Method": "GetProduto",
+    "RelativePath": "api/Orders/produto/{codigoProduto}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codigoProduto",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "service.indumepi.API.Controller.ProductController",
     "Method": "ListarProdutos",
     "RelativePath": "api/Product/listar",

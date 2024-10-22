@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -14,19 +15,20 @@ namespace service.indumepi.Application.Service.ItemRequest
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<ItemService> _logger;
+        private readonly SemaphoreSlim _semaphore;
 
         public ItemService(HttpClient httpClient, ILogger<ItemService> logger)
         {
             _httpClient = httpClient;
             _logger = logger;
+            _semaphore = new SemaphoreSlim(4); // Limite de 4 requisições simultâneas
         }
 
         public async Task<List<Item>> ListarTodosOsProdutosAsync()
         {
             var url = "https://app.omie.com.br/api/v1/geral/produtos/";
             var todosOsProdutos = new List<Item>();
-            int registrosPorPagina = 200; 
-            int paginasPorBatch = 5; 
+            int registrosPorPagina = 200;
             int pagina = 1;
             bool continuarBuscando = true;
 
@@ -34,7 +36,7 @@ namespace service.indumepi.Application.Service.ItemRequest
             {
                 var tasks = new List<Task<List<Item>>>();
 
-                for (int i = 0; i < paginasPorBatch; i++)
+                for (int i = 0; i < 4; i++) // Máximo de 4 requisições por vez
                 {
                     tasks.Add(ObterProdutosPorPaginaAsync(url, pagina + i, registrosPorPagina));
                 }
@@ -54,8 +56,10 @@ namespace service.indumepi.Application.Service.ItemRequest
                     }
                 }
 
-                pagina += paginasPorBatch;
+                pagina += 4;
 
+                // Aguardar 1 segundo antes de iniciar o próximo lote para evitar bloqueios
+                await Task.Delay(1000);
             }
 
             return todosOsProdutos;
@@ -63,61 +67,69 @@ namespace service.indumepi.Application.Service.ItemRequest
 
         private async Task<List<Item>> ObterProdutosPorPaginaAsync(string url, int pagina, int registrosPorPagina)
         {
-            var data = new
+            await _semaphore.WaitAsync(); // Garantir que não ultrapasse 4 requisições simultâneas
+
+            try
             {
-                call = "ListarProdutos",
-                app_key = "2801542865121",
-                app_secret = "8a6559988fbe270c093bc62e90a6e063",
-                param = new[]
+                var data = new
                 {
-                    new
+                    call = "ListarProdutos",
+                    app_key = "2801542865121",
+                    app_secret = "8a6559988fbe270c093bc62e90a6e063",
+                    param = new[]
                     {
-                        pagina,
-                        registros_por_pagina = registrosPorPagina,
-                        apenas_importado_api = "N",
-                        filtrar_apenas_omiepdv = "N"
+                        new
+                        {
+                            pagina,
+                            registros_por_pagina = registrosPorPagina,
+                            apenas_importado_api = "N",
+                            filtrar_apenas_omiepdv = "N"
+                        }
                     }
-                }
-            };
+                };
 
-            var jsonPayload = JsonConvert.SerializeObject(data, new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.None
-            });
-
-            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            _httpClient.DefaultRequestHeaders.Clear();
-            var response = await _httpClient.PostAsync(url, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonResponse = await response.Content.ReadAsStringAsync();
-                var responseData = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-                List<Item> produtosPagina = new List<Item>();
-
-                foreach (var produto in responseData.produto_servico_cadastro)
+                var jsonPayload = JsonConvert.SerializeObject(data, new JsonSerializerSettings
                 {
-                    produtosPagina.Add(new Item
-                    {
-                        Codigo = produto.codigo,
-                        CodigoProduto = Convert.ToInt64(produto.codigo_produto),
-                        Descricao = produto.descricao,
-                        ValorUnitario = (decimal)produto.valor_unitario,
-                        CodigoFamilia = Convert.ToInt64(produto.codigo_familia)
-                    });
-                }
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Formatting = Formatting.None
+                });
 
-                return produtosPagina;
+                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                _httpClient.DefaultRequestHeaders.Clear();
+                var response = await _httpClient.PostAsync(url, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                    List<Item> produtosPagina = new List<Item>();
+
+                    foreach (var produto in responseData.produto_servico_cadastro)
+                    {
+                        produtosPagina.Add(new Item
+                        {
+                            Codigo = produto.codigo,
+                            CodigoProduto = Convert.ToInt64(produto.codigo_produto),
+                            Descricao = produto.descricao,
+                            ValorUnitario = (decimal)produto.valor_unitario,
+                            CodigoFamilia = Convert.ToInt64(produto.codigo_familia)
+                        });
+                    }
+
+                    return produtosPagina;
+                }
+                else
+                {
+                    _logger.LogError($"Falha na requisição. Código de status: {response.StatusCode}. Página: {pagina}");
+                    return new List<Item>();
+                }
             }
-            else
+            finally
             {
-                _logger.LogError($"Falha na requisição. Código de status: {response.StatusCode}. Página: {pagina}");
-                return new List<Item>();
+                _semaphore.Release(); // Liberar o semáforo para permitir outra requisição
             }
         }
     }
 }
-
