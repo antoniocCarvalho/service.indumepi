@@ -93,29 +93,41 @@ namespace service.indumepi.API.Controllers
                 return NotFound("Nenhum pedido encontrado com esse número.");
             }
 
-            // Itera sobre os produtos do pedido e verifica se há mudanças
             foreach (var existingOrder in existingOrders)
             {
                 if (existingOrder.Id == separacaoDto.Id)
                 {
-                    // Verifica se houve mudança nos campos PrimeiraSeparacao ou SegundaSeparacao
                     bool hasChanged = existingOrder.PrimeiraSeparacao != separacaoDto.PrimeiraSeparacao ||
                                       existingOrder.SegundaSeparacao != separacaoDto.SegundaSeparacao;
 
                     if (hasChanged)
                     {
-                        // Mantém os valores atuais e atualiza apenas os campos de interesse
                         existingOrder.PrimeiraSeparacao = separacaoDto.PrimeiraSeparacao;
                         existingOrder.SegundaSeparacao = separacaoDto.SegundaSeparacao;
                         existingOrder.Editado = true; // Marca como editado
 
-                        // Atualiza o pedido no banco de dados
                         _orderRepository.UpdateOrderProduct(existingOrder);
                     }
                 }
             }
 
             return Ok("Pedido atualizado com sucesso.");
+        }
+
+
+
+        [HttpGet("produto/{codigoProduto}")]
+        public async Task<IActionResult> GetProduto(long codigoProduto)
+        {
+            var produto = _orderRepository.GetByProductCode(codigoProduto);
+            if (produto != null)
+            {
+                return Ok(produto);
+            }
+            else
+            {
+                return NotFound("Produto não encontrado.");
+            }
         }
 
     }

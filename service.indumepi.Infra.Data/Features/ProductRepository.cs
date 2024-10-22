@@ -1,7 +1,9 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using service.indumepi.Application.Service.ItemRequest;
 using service.indumepi.Domain.Aggregates.Item;
+using service.indumepi.Domain.Aggregates.Order;
+using System.Data.Entity;
 
 
 namespace service.indumepi.Infra.Data.Features
@@ -58,6 +60,6 @@ namespace service.indumepi.Infra.Data.Features
                 .FirstOrDefault(p => p.CodigoProduto == codigoProduto);
         }
 
-       
+
     }
 }
