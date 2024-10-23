@@ -1,0 +1,15 @@
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\bin\Development\net8.0\service.indumepi.Domain.deps.json
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\bin\Development\net8.0\service.indumepi.Domain.runtimeconfig.json
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\bin\Development\net8.0\service.indumepi.Domain.dll
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\bin\Development\net8.0\service.indumepi.Domain.pdb
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.csproj.AssemblyReference.cache
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.AssemblyInfoInputs.cache
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.AssemblyInfo.cs
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.csproj.CoreCompileInputs.cache
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.sourcelink.json
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.dll
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\refint\service.indumepi.Domain.dll
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.pdb
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\service.indumepi.Domain.genruntimeconfig.cache
+C:\Users\anton\Projeto\service.indumepi\service.indumepi.Domain\obj\Development\net8.0\ref\service.indumepi.Domain.dll
