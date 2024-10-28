@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("service.indumepi.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+acec8d723d6d5b69eb4dcbb3a53237d38e6a197d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+088edb906e9bcbee6a5bad16a3d980766c14736c")]
 [assembly: System.Reflection.AssemblyProductAttribute("service.indumepi.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("service.indumepi.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

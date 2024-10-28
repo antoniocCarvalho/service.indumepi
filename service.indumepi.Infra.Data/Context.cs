@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using service.indumepi.Domain.Aggregates.Client;
+using service.indumepi.Domain.Aggregates.Estoque;
 using service.indumepi.Domain.Aggregates.Family;
 using service.indumepi.Domain.Aggregates.Item;
 using service.indumepi.Domain.Aggregates.Order;
@@ -18,6 +19,8 @@ namespace service.indumepi.Infra.Data
         public DbSet<Family> Families { get; set; }
         public DbSet<OrderList> OrderList { get; set; }
         public DbSet<OrderProduct> OrderProduct { get; set; }
+
+        public DbSet<Estoque> estoques { get; set; }
     }
 
     public class ContextFactory : IDesignTimeDbContextFactory<Context>
