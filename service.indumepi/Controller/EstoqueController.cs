@@ -1,20 +1,19 @@
-﻿
-    using global::service.indumepi.Infra.Data.Features;
-    using Microsoft.AspNetCore.Mvc;
-    using service.indumepi.Application.Service.ItemRequest;
-    using service.indumepi.Infra.Data.Features;
+﻿using global::service.indumepi.Infra.Data.Features;
+using Microsoft.AspNetCore.Mvc;
+using service.indumepi.Application.Service.EstoqueRequest;
+using service.indumepi.Infra.Data.Features;
 
-    namespace service.indumepi.API.Controller
-    {
-        [ApiController]
+namespace service.indumepi.API.Controller
+{
+    [ApiController]
         [Route("api/[controller]")]
         public class EstoqueController : ControllerBase
         {
             private readonly EstoqueService _estoqueService;
-            private readonly ProductRepository _productRepository;
+            private readonly EstoqueRepository _productRepository;
 
 
-            public EstoqueController(EstoqueService estoqueService, ProductRepository productRepository)
+            public EstoqueController(EstoqueService estoqueService, EstoqueRepository productRepository)
             {
                 _estoqueService = estoqueService;
                 _productRepository = productRepository;
@@ -26,9 +25,9 @@
                 var produtos = await _estoqueService.ListarTodosOsProdutosAsync();
                 if (produtos.Any())
                 {
-                    _productRepository.DeleteAll();
-                    _productRepository.SaveProducts(produtos);
-                    return Ok(produtos);
+                _productRepository.DeleteAll();
+                _productRepository.SaveEstoques(produtos);
+                return Ok(produtos);
                 }
                 else
                 {

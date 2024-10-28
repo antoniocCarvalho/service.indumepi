@@ -20,7 +20,7 @@ namespace service.indumepi.Infra.Data
         public DbSet<OrderList> OrderList { get; set; }
         public DbSet<OrderProduct> OrderProduct { get; set; }
 
-        public DbSet<Estoque> estoques { get; set; }
+        public DbSet<Estoque> Estoque { get; set; }
     }
 
     public class ContextFactory : IDesignTimeDbContextFactory<Context>

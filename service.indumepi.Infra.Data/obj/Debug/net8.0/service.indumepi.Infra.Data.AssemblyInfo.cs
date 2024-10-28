@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("service.indumepi.Infra.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+088edb906e9bcbee6a5bad16a3d980766c14736c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f8962252e0af61de47068819dbd4c594ffdc3d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("service.indumepi.Infra.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("service.indumepi.Infra.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
