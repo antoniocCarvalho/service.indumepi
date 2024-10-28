@@ -38,6 +38,26 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "service.indumepi.API.Controller.EstoqueController",
+    "Method": "ListarProdutos",
+    "RelativePath": "api/Estoque/listar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "service.indumepi.API.Controller.EstoqueController",
+    "Method": "ListarProdutosFront",
+    "RelativePath": "api/Estoque/listar/front",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "service.indumepi.API.Controller.FamiliesController",
     "Method": "ListarFamilies",
     "RelativePath": "api/Families/families",

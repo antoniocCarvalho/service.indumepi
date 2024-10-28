@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using service.indumepi.Application.Service.ClientRequest;
+using service.indumepi.Application.Service.EstoqueRequest;
 using service.indumepi.Application.Service.FamilyRequest;
 using service.indumepi.Application.Service.ItemRequest;
 using service.indumepi.Application.Service.OrderRequest;
@@ -24,6 +25,10 @@ builder.Services.AddScoped<FamilyRepository>();
 
 builder.Services.AddHttpClient<OrderService>();
 builder.Services.AddScoped<OrderRepository>();
+
+
+builder.Services.AddHttpClient<EstoqueService>();
+builder.Services.AddScoped<EstoqueRepository>();
 
 builder.Services.AddCors(options =>
 {
