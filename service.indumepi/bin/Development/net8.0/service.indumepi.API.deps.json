@@ -652,10 +652,7 @@
           "service.indumepi.Domain": "1.0.0"
         },
         "runtime": {
-          "service.indumepi.Application.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "service.indumepi.Application.dll": {}
         }
       },
       "service.indumepi.Domain/1.0.0": {
@@ -663,10 +660,7 @@
           "EntityFramework": "6.5.1"
         },
         "runtime": {
-          "service.indumepi.Domain.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "service.indumepi.Domain.dll": {}
         }
       },
       "service.indumepi.Infra.Data/1.0.0": {
@@ -678,10 +672,7 @@
           "service.indumepi.Domain": "1.0.0"
         },
         "runtime": {
-          "service.indumepi.Infra.Data.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "service.indumepi.Infra.Data.dll": {}
         }
       }
     }

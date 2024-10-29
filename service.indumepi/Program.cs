@@ -33,7 +33,7 @@ builder.Services.AddScoped<EstoqueRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost",
-        builder => builder.WithOrigins("http://127.0.0.1:5500")
+        builder => builder.WithOrigins("http://127.0.0.1:5501")
                           .AllowAnyHeader()
                           .AllowAnyMethod());
 });

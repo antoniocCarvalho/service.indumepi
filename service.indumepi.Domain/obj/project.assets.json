@@ -1050,23 +1050,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anton\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\vinicius.goncalves\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
       "projectName": "service.indumepi.Domain",
-      "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
-      "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\obj\\",
+      "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
+      "packagesPath": "C:\\Users\\vinicius.goncalves\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vinicius.goncalves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1119,7 +1120,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

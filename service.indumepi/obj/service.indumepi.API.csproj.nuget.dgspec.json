@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj": {}
+    "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj": {
+    "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj",
+        "projectUniqueName": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj",
         "projectName": "service.indumepi.Application",
-        "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj",
-        "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\obj\\",
+        "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj",
+        "packagesPath": "C:\\Users\\vinicius.goncalves\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vinicius.goncalves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,8 +33,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj": {
-                "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj"
+              "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj": {
+                "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj"
               }
             }
           }
@@ -78,24 +79,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj": {
+    "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
         "projectName": "service.indumepi.Domain",
-        "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
-        "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\obj\\",
+        "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj",
+        "packagesPath": "C:\\Users\\vinicius.goncalves\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vinicius.goncalves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -148,24 +150,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj": {
+    "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj",
+        "projectUniqueName": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj",
         "projectName": "service.indumepi.Infra.Data",
-        "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj",
-        "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Infra.Data\\obj\\",
+        "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj",
+        "packagesPath": "C:\\Users\\vinicius.goncalves\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vinicius.goncalves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -180,11 +183,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj": {
-                "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj"
+              "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj": {
+                "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj"
               },
-              "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj": {
-                "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj"
+              "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj": {
+                "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Domain\\service.indumepi.Domain.csproj"
               }
             }
           }
@@ -239,24 +242,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj": {
+    "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj",
+        "projectUniqueName": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj",
         "projectName": "service.indumepi.API",
-        "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj",
-        "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi\\obj\\",
+        "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi\\service.indumepi.API.csproj",
+        "packagesPath": "C:\\Users\\vinicius.goncalves\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vinicius.goncalves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -271,11 +275,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj": {
-                "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj"
+              "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj": {
+                "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Application\\service.indumepi.Application.csproj"
               },
-              "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj": {
-                "projectPath": "C:\\Users\\anton\\Projeto\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj"
+              "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\vinicius.goncalves\\Desktop\\Projetos\\Indumepi\\service.indumepi\\service.indumepi.Infra.Data\\service.indumepi.Infra.Data.csproj"
               }
             }
           }
@@ -319,7 +323,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("service.indumepi.Infra.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b11376b79106f97a39018f924a3e12549b3b4a9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+789190a193a2f4ae37448b8c007698bead6a9483")]
 [assembly: System.Reflection.AssemblyProductAttribute("service.indumepi.Infra.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("service.indumepi.Infra.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
