@@ -290,7 +290,10 @@
           "EntityFramework": "6.5.1"
         },
         "runtime": {
-          "service.indumepi.Domain.dll": {}
+          "service.indumepi.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

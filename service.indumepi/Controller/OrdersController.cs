@@ -98,12 +98,15 @@ namespace service.indumepi.API.Controllers
                 if (existingOrder.Id == separacaoDto.Id)
                 {
                     bool hasChanged = existingOrder.PrimeiraSeparacao != separacaoDto.PrimeiraSeparacao ||
-                                      existingOrder.SegundaSeparacao != separacaoDto.SegundaSeparacao;
+                                      existingOrder.SegundaSeparacao != separacaoDto.SegundaSeparacao ||
+                                      existingOrder.Conferido != separacaoDto.Conferido;
 
                     if (hasChanged)
                     {
                         existingOrder.PrimeiraSeparacao = separacaoDto.PrimeiraSeparacao;
                         existingOrder.SegundaSeparacao = separacaoDto.SegundaSeparacao;
+                        existingOrder.Conferido = separacaoDto.Conferido;
+                        existingOrder.UserName = separacaoDto.UserName;
                         existingOrder.Editado = true; // Marca como editado
 
                         _orderRepository.UpdateOrderProduct(existingOrder);

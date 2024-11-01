@@ -11,6 +11,10 @@ namespace service.indumepi.Domain.Aggregates.Order
         public Guid Id { get; set; }
         public int PrimeiraSeparacao { get; set; }
         public int SegundaSeparacao { get; set; }
+
+        public int Conferido { get; set; }
+
+        public string UserName { get; set; }
     }
 
 }

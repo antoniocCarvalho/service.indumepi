@@ -193,6 +193,7 @@ namespace service.indumepi.Infra.Data.Features
                     Quantidade = item.Quantidade,
                     PrimeiraSeparacao = item.PrimeiraSeparacao,
                     SegundaSeparacao = item.SegundaSeparacao,
+                    Conferido = item.Conferido,
                     UserName = item.UserName ?? "Usuário não especificado", // Tratamento de nulo para strings
                 })
                 .ToList();
@@ -208,6 +209,8 @@ namespace service.indumepi.Infra.Data.Features
                 // Atualiza apenas os campos específicos
                 existingOrder.PrimeiraSeparacao = orderProduct.PrimeiraSeparacao;
                 existingOrder.SegundaSeparacao = orderProduct.SegundaSeparacao;
+                existingOrder.Conferido = orderProduct.Conferido;
+                existingOrder.UserName = orderProduct.UserName;
                 existingOrder.Editado = true;
 
                 // Salva as mudanças

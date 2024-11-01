@@ -141,6 +141,37 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "service.indumepi.API.Controllers.PedidoController",
+    "Method": "EnviarEtapa",
+    "RelativePath": "api/Pedido/pedidos/{numeroPedido}/etapa/{etapa}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "numeroPedido",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "etapa",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "service.indumepi.API.Controllers.PedidoController",
+    "Method": "GetStatus",
+    "RelativePath": "api/Pedido/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "service.indumepi.API.Controller.ProductController",
     "Method": "ListarProdutos",
     "RelativePath": "api/Product/listar",
