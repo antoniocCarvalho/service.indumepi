@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("service.indumepi.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4693044d808568c2d4edd1ae17ee6cd39726cc5a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c60f78d637a1d3c2fe9a9e9465fbfbf575673979")]
 [assembly: System.Reflection.AssemblyProductAttribute("service.indumepi.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("service.indumepi.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
