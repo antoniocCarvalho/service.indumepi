@@ -20,7 +20,6 @@ namespace service.indumepi.Application.Service.FamilyRequest
             _httpClient = httpClient;
             _logger = logger;
 
-            // Configurar HttpClient para aceitar respostas compactadas
             _httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
             _httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
         }
@@ -29,8 +28,8 @@ namespace service.indumepi.Application.Service.FamilyRequest
         {
             var url = "https://app.omie.com.br/api/v1/geral/familias/";
             var todasAsFamilias = new List<Family>();
-            int registrosPorPagina = 200; // Aumentar o número de registros por página
-            int paginasPorBatch = 5; // Requisições simultâneas por lote
+            int registrosPorPagina = 200; 
+            int paginasPorBatch = 5; 
             int pagina = 1;
             bool continuarBuscando = true;
 
@@ -38,13 +37,11 @@ namespace service.indumepi.Application.Service.FamilyRequest
             {
                 var tasks = new List<Task<List<Family>>>();
 
-                // Adicionar múltiplas tarefas para buscar páginas em paralelo
                 for (int i = 0; i < paginasPorBatch; i++)
                 {
                     tasks.Add(ObterFamiliasPorPaginaAsync(url, pagina + i, registrosPorPagina));
                 }
 
-                // Executar as tarefas em paralelo e obter os resultados
                 var resultados = await Task.WhenAll(tasks);
 
                 foreach (var familiasPagina in resultados)
@@ -60,7 +57,6 @@ namespace service.indumepi.Application.Service.FamilyRequest
                     }
                 }
 
-                // Avançar para o próximo lote de páginas
                 pagina += paginasPorBatch;
             }
 

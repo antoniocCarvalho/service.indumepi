@@ -19,7 +19,7 @@
   },
   {
     "ContainingType": "service.indumepi.API.Controller.ClientController",
-    "Method": "ListarProdutos",
+    "Method": "ListarClientes",
     "RelativePath": "api/Client/Cliente",
     "HttpMethod": "GET",
     "IsController": true,
