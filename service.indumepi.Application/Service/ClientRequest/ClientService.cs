@@ -21,7 +21,7 @@ namespace service.indumepi.Application.Service.ClientRequest
         {
             _httpClient = httpClient;
             _logger = logger;
-            _semaphore = new SemaphoreSlim(4); 
+            _semaphore = new SemaphoreSlim(4);
         }
 
         public async Task<List<Client>> ListarTodosOsClientesAsync()
@@ -36,7 +36,7 @@ namespace service.indumepi.Application.Service.ClientRequest
             {
                 var tasks = new List<Task<List<Client>>>();
 
-                for (int i = 0; i < 4; i++) 
+                for (int i = 0; i < 4; i++)
                 {
                     tasks.Add(ObterClientesPorPaginaAsync(url, pagina + i, registrosPorPagina));
                 }
@@ -66,7 +66,7 @@ namespace service.indumepi.Application.Service.ClientRequest
 
         private async Task<List<Client>> ObterClientesPorPaginaAsync(string url, int pagina, int registrosPorPagina)
         {
-            await _semaphore.WaitAsync(); 
+            await _semaphore.WaitAsync();
 
             try
             {
@@ -125,7 +125,7 @@ namespace service.indumepi.Application.Service.ClientRequest
             }
             finally
             {
-                _semaphore.Release(); 
+                _semaphore.Release();
             }
         }
     }
