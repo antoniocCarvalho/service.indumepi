@@ -67,7 +67,7 @@ namespace service.indumepi.Application.Service.ItemRequest
 
         private async Task<List<Item>> ObterProdutosPorPaginaAsync(string url, int pagina, int registrosPorPagina)
         {
-            await _semaphore.WaitAsync(); // Garantir que não ultrapasse 4 requisições simultâneas
+            await _semaphore.WaitAsync(); 
 
             try
             {
@@ -128,7 +128,7 @@ namespace service.indumepi.Application.Service.ItemRequest
             }
             finally
             {
-                _semaphore.Release(); // Liberar o semáforo para permitir outra requisição
+                _semaphore.Release();
             }
         }
     }
